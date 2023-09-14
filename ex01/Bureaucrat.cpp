@@ -6,7 +6,7 @@
 /*   By: araqioui <araqioui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:45:31 by araqioui          #+#    #+#             */
-/*   Updated: 2023/09/10 17:41:32 by araqioui         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:07:22 by araqioui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ int	Bureaucrat::getGrade(void) const
 
 // Nested Classes
 
-const char	*Bureaucrat::GradeTooHighException::what(void) const _NOEXCEPT
+const char	*Bureaucrat::GradeTooHighException::what(void) const throw()
 {
-	return ("GRADE TOO HIGH");
+	return ("!! GRADE TOO HIGH !!");
 }
 
-const char	*Bureaucrat::GradeTooLowException::what(void) const _NOEXCEPT
+const char	*Bureaucrat::GradeTooLowException::what(void) const throw()
 {
-	return ("GRADE TOO LOW");
+	return ("!! GRADE TOO LOW !!");
 }
 
 // Output operator

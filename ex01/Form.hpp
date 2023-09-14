@@ -6,7 +6,7 @@
 /*   By: araqioui <araqioui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 13:09:54 by araqioui          #+#    #+#             */
-/*   Updated: 2023/09/10 17:49:32 by araqioui         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:07:50 by araqioui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Form {
 		Form(std::string name, int G, int GE);
 
 		// Implemented Methods
-		void	beSigned(const Bureaucrat &form);
+		void	beSigned(const Bureaucrat &bureaucrat);
 
 		// Getters
 		std::string	getName(void) const;
@@ -45,11 +45,11 @@ class Form {
 		// Nested Classes
 		class GradeTooHighException : public std::exception {
 			public:
-				const char* what(void) const _NOEXCEPT;
+				const char* what(void) const throw();
 		};
 		class GradeTooLowException : public std::exception {
 			public:
-				const char* what(void) const _NOEXCEPT;
+				const char* what(void) const throw();
 		};
 };
 

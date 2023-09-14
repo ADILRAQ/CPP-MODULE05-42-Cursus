@@ -6,7 +6,7 @@
 /*   By: araqioui <araqioui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:45:31 by araqioui          #+#    #+#             */
-/*   Updated: 2023/09/14 12:07:01 by araqioui         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:08:41 by araqioui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ Bureaucrat	&Bureaucrat::operator = (const Bureaucrat &source)
 Bureaucrat::Bureaucrat(std::string name, int grade) : Name(name), Grade(grade)
 {
 	if (Grade < 1)
-		throw Bureaucrat::GradeTooHighException();
+		throw GradeTooHighException();
 	else if (Grade > 150)
-		throw Bureaucrat::GradeTooLowException();
+		throw GradeTooLowException();
 }
 
 // Implemented Methods
@@ -51,14 +51,28 @@ void	Bureaucrat::Increment(void)
 {
 	--Grade;
 	if (Grade < 1)
-		throw Bureaucrat::GradeTooHighException();
+		throw GradeTooHighException();
 }
 
 void	Bureaucrat::Decrement(void)
 {
 	++Grade;
 	if (Grade > 150)
-		throw Bureaucrat::GradeTooLowException();
+		throw GradeTooLowException();
+}
+
+void	Bureaucrat::signForm(const AForm &form)
+{
+	if (form.getSigned())
+		std::cout << this->getName() << " signed " << form.getName() << std::endl;
+	else
+		std::cout << this->getName() << " couldn't sign " << form.getName() << " because form isn't signed" << std::endl;
+}
+
+void	Bureaucrat::executeForm(AForm const &form)
+{
+	form.execute(*this);
+	std::cout << this->getName() << " executed " << form.getName() << std::endl;
 }
 
 // Getters

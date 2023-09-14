@@ -6,7 +6,7 @@
 /*   By: araqioui <araqioui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:45:36 by araqioui          #+#    #+#             */
-/*   Updated: 2023/09/14 12:07:31 by araqioui         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:08:48 by araqioui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 #include <iostream>
 #include <exception>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class	Form;
+class	AForm;
 
 class Bureaucrat {
 	private:
@@ -36,7 +36,8 @@ class Bureaucrat {
 		// Implemented Methods
 		void	Increment(void);
 		void	Decrement(void);
-		void	signForm(const Form &form);
+		void	signForm(const AForm &form);
+		void	executeForm(AForm const &form);
 
 		// Getters
 		std::string	getName(void) const;
@@ -45,11 +46,11 @@ class Bureaucrat {
 		// Nested Classes
 		class GradeTooHighException : public std::exception {
 			public:
-				const char* what(void) const throw();
+				const char *what(void) const throw();
 		};
 		class GradeTooLowException : public std::exception {
 			public:
-				const char* what(void) const throw();
+				const char *what(void) const throw();
 		};
 };
 

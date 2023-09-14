@@ -1,56 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: araqioui <araqioui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/31 11:45:36 by araqioui          #+#    #+#             */
-/*   Updated: 2023/09/14 12:07:31 by araqioui         ###   ########.fr       */
+/*   Created: 2023/09/10 13:09:54 by araqioui          #+#    #+#             */
+/*   Updated: 2023/09/14 12:08:24 by araqioui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
-#include <exception>
-#include "Form.hpp"
+#include "Bureaucrat.hpp"
 
-class	Form;
+class	Bureaucrat;
 
-class Bureaucrat {
+class AForm {
 	private:
 		const std::string	Name;
-		int					Grade;
+		bool				Signed;
+		const int			Grade;
+		const int			GradeExecuted;
 
 	public:
 		// Orthodox Canonical Form
-		Bureaucrat(void);
-		Bureaucrat(const Bureaucrat &obj);
-		Bureaucrat	&operator = (const Bureaucrat &source);
-		~Bureaucrat(void);
+		AForm(void);
+		virtual ~AForm(void);
+		AForm(const AForm &obj);
+		AForm	&operator = (const AForm &source);
 
 		// Param Constructor
-		Bureaucrat(std::string name, int grade);
+		AForm(std::string name, int G, int GE);
 
 		// Implemented Methods
-		void	Increment(void);
-		void	Decrement(void);
-		void	signForm(const Form &form);
+		void	beSigned(const Bureaucrat &bureaucrat);
+
+		// Pure Virtual Function
+		virtual void	execute(Bureaucrat const &executer) const = 0;
 
 		// Getters
 		std::string	getName(void) const;
+		bool		getSigned(void) const;
 		int			getGrade(void) const;
+		int			getGradeExecuted(void) const;
 
 		// Nested Classes
 		class GradeTooHighException : public std::exception {
 			public:
-				const char* what(void) const throw();
+				const char *what(void) const throw();
 		};
 		class GradeTooLowException : public std::exception {
 			public:
-				const char* what(void) const throw();
+				const char *what(void) const throw();
+		};
+		class NotExecuted : public std::exception {
+			const char	*what(void) const throw();
 		};
 };
 
-std::ostream	&operator << (std::ostream &output, const Bureaucrat &obj);
+std::ostream	&operator << (std::ostream &output, const AForm &obj);

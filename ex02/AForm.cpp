@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: araqioui <araqioui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 13:28:20 by araqioui          #+#    #+#             */
-/*   Updated: 2023/09/14 12:07:41 by araqioui         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:08:04 by araqioui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 // Orthodox Canonical Form
 
-Form::Form(void) : Name(""), Signed(false), Grade(0), GradeExecuted(0)
+AForm::AForm(void) : Name(""), Signed(false), Grade(0), GradeExecuted(0)
 {
 	throw GradeTooHighException();
 }
 
-Form::~Form(void)
+AForm::~AForm(void)
 {
 }
 
-Form::Form(const Form &obj) : Name(obj.Name), Grade(obj.Grade), GradeExecuted(obj.GradeExecuted)
+AForm::AForm(const AForm &obj) : Name(obj.Name), Grade(obj.Grade), GradeExecuted(obj.GradeExecuted)
 {
 	Signed = obj.Signed;
 }
 
-Form	&Form::operator = (const Form &source)
+AForm	&AForm::operator = (const AForm &source)
 {
 	if (this != &source)
 		this->Signed = source.Signed;
@@ -37,7 +37,7 @@ Form	&Form::operator = (const Form &source)
 
 // Param Constructor
 
-Form::Form(std::string name, int G, int GE) : Name(name), Signed(false), Grade(G), GradeExecuted(GE)
+AForm::AForm(std::string name, int G, int GE) : Name(name), Signed(false), Grade(G), GradeExecuted(GE)
 {
 	if (Grade < 1)
 		throw GradeTooHighException();
@@ -47,29 +47,29 @@ Form::Form(std::string name, int G, int GE) : Name(name), Signed(false), Grade(G
 
 // Getters
 
-std::string	Form::getName(void) const
+std::string	AForm::getName(void) const
 {
 	return (Name);
 }
 
-bool	Form::getSigned(void) const
+bool	AForm::getSigned(void) const
 {
 	return (Signed);
 }
 
-int	Form::getGrade(void) const
+int	AForm::getGrade(void) const
 {
 	return (Grade);
 }
 
-int	Form::getGradeExecuted(void) const
+int	AForm::getGradeExecuted(void) const
 {
 	return (GradeExecuted);
 }
 
 // Implemented Methods
 
-void	Form::beSigned(const Bureaucrat &bureaucrat)
+void	AForm::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() <= this->Grade && !this->getSigned())
 		Signed = true;
@@ -77,19 +77,24 @@ void	Form::beSigned(const Bureaucrat &bureaucrat)
 
 // Nested Classes
 
-const char	*Form::GradeTooHighException::what(void) const throw()
+const char	*AForm::GradeTooHighException::what(void) const throw()
 {
 	return ("!! GRADE TOO HIGH !!");
 }
 
-const char	*Form::GradeTooLowException::what(void) const throw()
+const char	*AForm::GradeTooLowException::what(void) const throw()
 {
 	return ("!! GRADE TOO LOW !!");
 }
 
+const char	*AForm::NotExecuted::what(void) const throw()
+{
+	return ("Form Not Executed !");
+}
+
 // Output operator
 
-std::ostream	&operator << (std::ostream &output, const Form &obj)
+std::ostream	&operator << (std::ostream &output, const AForm &obj)
 {
 	
 	std::cout << obj.getName() << " | " << obj.getGrade() << " | " << obj.getGradeExecuted() << " | " << obj.getSigned();
