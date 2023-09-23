@@ -6,7 +6,7 @@
 /*   By: araqioui <araqioui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 13:21:33 by araqioui          #+#    #+#             */
-/*   Updated: 2023/09/14 14:25:16 by araqioui         ###   ########.fr       */
+/*   Updated: 2023/09/23 09:12:55 by araqioui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ AForm	*Intern::makeForm(std::string formType, std::string target)
 	switch (i)
 	{
 	case 0:
-		std::cout << "Intern creates " << formType << std::endl;
+		std::cout << "Intern creates \"" << formType << "\"" << std::endl;
 		return (new ShrubberyCreationForm(target));
 	case 1:
-		std::cout << "Intern creates " << formType << std::endl;
+		std::cout << "Intern creates \"" << formType << "\"" << std::endl;
 		return (new RobotomyRequestForm(target));
 	case 2:
-		std::cout << "Intern creates " << formType << std::endl;
+		std::cout << "Intern creates \"" << formType << "\"" << std::endl;
 		return (new PresidentialPardonForm(target));
 	default:
 		throw InternProblem();
@@ -62,5 +62,5 @@ AForm	*Intern::makeForm(std::string formType, std::string target)
 
 const char	*Intern::InternProblem::what(void) const throw()
 {
-	return ("Intern didn't create the form");
+	return ("Form type unexist !");
 }

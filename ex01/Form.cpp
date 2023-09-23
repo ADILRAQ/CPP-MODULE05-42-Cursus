@@ -6,7 +6,7 @@
 /*   By: araqioui <araqioui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 13:28:20 by araqioui          #+#    #+#             */
-/*   Updated: 2023/09/14 12:07:41 by araqioui         ###   ########.fr       */
+/*   Updated: 2023/09/23 08:59:20 by araqioui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	Form::getGradeExecuted(void) const
 void	Form::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() <= this->Grade && !this->getSigned())
-		Signed = true;
+		this->Signed = true;
 }
 
 // Nested Classes
